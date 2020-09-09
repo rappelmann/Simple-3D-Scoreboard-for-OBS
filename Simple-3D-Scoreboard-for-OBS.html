@@ -1,0 +1,310 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Simple W/L Counter</title>
+
+  <script>
+    var wins = {
+        value:0,
+        animationState:1
+    };
+    var losses = {
+        value:0,
+        animationState:1
+    };
+    function winUp(){
+        wins.value++;
+        document.getElementById("winsInput").value=wins.value;
+        renderWinUp();
+    }
+    function winDown(){
+        wins.value--;
+        document.getElementById("winsInput").value=wins.value;
+        renderWinDown();
+    }
+    function lossUp(){
+        losses.value++;
+        document.getElementById("lossesInput").value=losses.value;
+        renderlossesUp();
+    }
+    function lossDown(){
+        losses.value--;
+        document.getElementById("lossesInput").value=losses.value;
+        renderlossesDown();
+    }
+    function renderWinUp(){
+        document.getElementById("WinCube").classList.remove("rotate"+wins.animationState);
+        document.getElementById("WinCube").classList.remove("rotateBackwards"+wins.animationState);
+        wins.animationState=animationStateUp(wins.animationState);
+        document.getElementById("wins"+wins.animationState).innerHTML=wins.value;
+        document.getElementById("WinCube").classList.add("rotate"+wins.animationState);
+    }
+    function renderWinDown(){
+        document.getElementById("WinCube").classList.remove("rotate"+wins.animationState);
+        document.getElementById("WinCube").classList.remove("rotateBackwards"+wins.animationState);
+        wins.animationState=animationStateDown(wins.animationState);
+        document.getElementById("wins"+wins.animationState).innerHTML=wins.value;
+        document.getElementById("WinCube").classList.add("rotateBackwards"+wins.animationState);
+    }
+    function renderlossesUp(){
+        document.getElementById("LossCube").classList.remove("rotate"+losses.animationState);
+        document.getElementById("LossCube").classList.remove("rotateBackwards"+losses.animationState);
+        losses.animationState=animationStateUp(losses.animationState);
+        document.getElementById("losses"+losses.animationState).innerHTML=losses.value;
+        document.getElementById("LossCube").classList.add("rotate"+losses.animationState);
+    }
+    function renderlossesDown(){
+        document.getElementById("LossCube").classList.remove("rotate"+losses.animationState);
+        document.getElementById("LossCube").classList.remove("rotateBackwards"+losses.animationState);
+        losses.animationState=animationStateDown(losses.animationState);
+        document.getElementById("losses"+losses.animationState).innerHTML=losses.value;
+        document.getElementById("LossCube").classList.add("rotateBackwards"+losses.animationState);
+    }
+    function setLossess(){
+        losses.value=document.getElementById("lossesInput").value;
+        document.getElementById("losses"+losses.animationState).innerHTML=losses.value;
+    }
+    function setWins(){
+        wins.value=document.getElementById("winsInput").value;
+        document.getElementById("wins"+wins.animationState).innerHTML=wins.value;
+    }
+    function animationStateUp(value){
+        if(value!=4){
+            return value+1;
+        }
+        else{
+            return 1;
+        }
+    }
+    function animationStateDown(value){
+        if(value!=1){
+            return value-1;
+        }
+        else{
+            return 4;
+        }
+    }
+</script>
+
+  <style>
+
+
+:root{
+    --background:grey;
+    --text:white;
+    --border:black;
+    
+    --text-size:200px;
+    
+    --heigth-full: 300px;
+    --heigth-half: 150px;
+    --width: 400px;
+
+    --animation-length: 1s;
+}
+.cubeContainer{
+    position: absolute;
+    top:100px;
+}
+#settings{
+    position: absolute;
+    top: 500px;
+    font-size: 100px;
+}
+#settings>div>button{
+    height: 100px;
+    width: 100px;
+    font-size: 50px;
+}
+#settings>div>input{
+    height: 100px;
+    width: 100px;
+    font-size: 50px;
+}
+
+#WinCube{
+
+    left:50px;
+}
+#LossCube{
+
+    left:600px;
+}
+#SeparatorCube{
+    width: 100px;
+    left:475px;
+    top:30px;
+}
+  .cube {
+      width: var(--width);
+      height: var(--heigth-full);
+      top: 30px;
+      transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      position: absolute;
+      animation-fill-mode: forwards;
+  }
+.rotate1{
+    animation: cubeRotate1 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+.rotate2{
+    animation: cubeRotate2 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+.rotate3{
+    animation: cubeRotate3 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+.rotate4{
+    animation: cubeRotate4 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+.rotateBackwards1{
+    animation: cubeRotateBackwards1 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+.rotateBackwards2{
+    animation: cubeRotateBackwards2 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+.rotateBackwards3{
+    animation: cubeRotateBackwards3 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+.rotateBackwards4{
+    animation: cubeRotateBackwards4 var(--animation-length);
+    animation-fill-mode: forwards;
+}
+ .cubeSide {
+        position: absolute;
+        -webkit-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+        width: var(--width);
+        height: var(--heigth-full);
+        overflow: hidden;
+        color:var(--text);
+        background-color: var(--background);
+        border: var(--border) solid 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial;
+        font-size:var(--text-size);
+  }
+    @keyframes cubeRotate1 {
+        0%   {	-webkit-transform: rotateX(270deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(360deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+  @keyframes cubeRotate2 {
+        0%   {	-webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+  @keyframes cubeRotate3 {
+        0%   {	-webkit-transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+  @keyframes cubeRotate4 {
+        0%   {	-webkit-transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(270deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+  @keyframes cubeRotateBackwards1 {
+        0%   {	-webkit-transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+  @keyframes cubeRotateBackwards2 {
+        0%   {	-webkit-transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+  @keyframes cubeRotateBackwards3 {
+        0%   {	-webkit-transform: rotateX(270deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+  @keyframes cubeRotateBackwards4 {
+        0%   {	-webkit-transform: rotateX(360deg) rotateY(0deg) rotateZ(0deg);	}
+      100%   {	-webkit-transform: rotateX(270deg) rotateY(0deg) rotateZ(0deg);	}
+  }
+
+  .side1 {
+      transform: translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -moz-transform: translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -webkit-transform: translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+  }
+  .side2 {
+      transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -moz-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -webkit-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+  }
+  .side3 {
+      transform: rotateX(180deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -moz-transform: rotateX(180deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -webkit-transform: rotateX(180deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+  }
+  .side4 {
+      transform: rotateX(270deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -moz-transform: rotateX(270deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+      -webkit-transform: rotateX(270deg) translateX(0px) translateY(0px) translateZ(var(--heigth-half));
+  }
+    
+    
+    </style>
+</head>
+
+<body>
+    <div class="cubeContainer">
+        <div id="WinCube" class="cube">
+            <div id="wins1" class="cubeSide side1">
+                0
+            </div>
+            <div id="wins4" class="cubeSide side2">
+                1
+            </div>
+            <div id="wins3" class="cubeSide side3">
+                2
+            </div>
+            <div id="wins2" class="cubeSide side4">
+                3
+            </div>
+        </div>
+
+        <div id="SeparatorCube" class="cubeSide">
+            <div>-</div>
+        </div>
+
+        <div id="LossCube" class="cube">
+            <div id="losses1" class="cubeSide side1">
+                0
+            </div>
+            <div id="losses4" class="cubeSide side2">
+                1
+            </div>
+            <div id="losses3" class="cubeSide side3">
+                2
+            </div>
+            <div id="losses2" class="cubeSide side4">
+                3
+            </div>
+        </div>
+    </div>
+    <div id="settings">
+        <div>
+            wins: 
+            <button onclick="winUp()">^</button>
+            <button onclick="winDown()">v</button>
+            <input type="text" id="winsInput">
+            <button onclick="setWins()">Set</button>
+        </div>
+        <div>
+            losses: 
+            <button onclick="lossUp()">^</button>
+            <button onclick="lossDown()">v</button>
+            <input type="text" id="lossesInput">
+            <button onclick="setLossess()">Set</button>
+        </div>
+      </div>
+</body>
+</html>
