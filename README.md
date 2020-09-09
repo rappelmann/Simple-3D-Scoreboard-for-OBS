@@ -5,3 +5,4 @@ CSS and JS are all in one file to make it easier for laymen to use. The Size is 
 
 # How to use
 Add a Browser Source to OBS. There, you select local file and select the file. Resize and cut the bottom part with the settings. To change the values, right click and select "interact".
+If you want to change the color, edit the file and go to the lines 96, 97 and 98.
